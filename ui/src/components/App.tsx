@@ -18,14 +18,14 @@ export default function App() {
     const [host, setHost] = useState<string>('');
     const [sendingRequest, setSendingRequest] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [groupby] = useLocalStorage('groupby', 'default');
-    const [sort] = useLocalStorage('sort', 'default');
+    const [sort] = useLocalStorage('sort', 'route_names');
+    const [groupby] = useLocalStorage('groupby', 'api_uri');
     const [showGet] = useLocalStorage('showGet', 'true');
     const [showPost] = useLocalStorage('showPost', 'true');
     const [showDelete] = useLocalStorage('showDelete', 'true');
     const [showPut] = useLocalStorage('showPut', 'true');
-    const [showPatch] = useLocalStorage('showPatch', 'true');
-    const [showHead] = useLocalStorage('showHead', 'true');
+    const [showPatch] = useLocalStorage('showPatch', 'false');
+    const [showHead] = useLocalStorage('showHead', 'false');
 
     const searchOptions = {
         keys: ['uri', 'doc_block'],
