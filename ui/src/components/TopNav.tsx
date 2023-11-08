@@ -31,14 +31,14 @@ export default function TopNav(props: Props) {
 
     const { handleChangeSettings, handleSearch } = props
     const [theme, setTheme] = useLocalStorage('theme', '');
-    const [sort, setSort] = useLocalStorage('sort', 'default');
-    const [groupby, setGroupby] = useLocalStorage('groupby', 'default');
+    const [sort, setSort] = useLocalStorage('sort', 'route_names');
+    const [groupby, setGroupby] = useLocalStorage('groupby', 'api_uri');
     const [showGet, setShowGet] = useLocalStorage('showGet', 'true');
     const [showPost, setShowPost] = useLocalStorage('showPost', 'true');
     const [showDelete, setShowDelete] = useLocalStorage('showDelete', 'true');
     const [showPut, setShowPut] = useLocalStorage('showPut', 'true');
-    const [showPatch, setShowPatch] = useLocalStorage('showPatch', 'true');
-    const [showHead, setShowHead] = useLocalStorage('showHead', 'true');
+    const [showPatch, setShowPatch] = useLocalStorage('showPatch', 'false');
+    const [showHead, setShowHead] = useLocalStorage('showHead', 'false');
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const handleChangeGroupby = (e: any) => {
