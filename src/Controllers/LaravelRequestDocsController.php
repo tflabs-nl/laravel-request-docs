@@ -57,8 +57,8 @@ class LaravelRequestDocsController extends Controller
         // Loop and split Doc by the `methods` property.
         // `Route::match([...n], 'uri', ...)` will generate n number of Doc.
         $docs = $this->laravelRequestDocs->splitByMethods($docs);
-        $docs = $this->laravelRequestDocs->sortDocs($docs, $request->input('sort'));
-        $docs = $this->laravelRequestDocs->groupDocs($docs, $request->input('groupby'));
+        $docs = $this->laravelRequestDocs->sortDocs($docs, $request->input('sort') == 'default' ? 'api_uri' : $request->input('sort'));
+        $docs = $this->laravelRequestDocs->groupDocs($docs, $request->input('groupby') == 'default' ? 'route_names' : $request->input('groupby'));
 
         if ($request->input('openapi')) {
             return response()->json(

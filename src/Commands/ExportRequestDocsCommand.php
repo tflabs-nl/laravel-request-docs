@@ -29,8 +29,8 @@ class ExportRequestDocsCommand extends Command
      */
     protected $signature = 'laravel-request-docs:export
                             {path? : Export file location}
-                            {--sort=default : Sort the data by route names}
-                            {--groupby=default : Group the data by API URI}
+                            {--sort=route_names : Sort the data by route names}
+                            {--groupby=api_uri : Group the data by API URI}
                             {--force : Whether to overwrite existing file}';
 
 
