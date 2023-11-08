@@ -1,12 +1,12 @@
 {
-    "name": "rakutentech/laravel-request-docs",
+    "name": "tflabs-nl/laravel-request-docs",
     "description": "Automatically generate Laravel docs from request rules, controllers and routes",
     "keywords": [
         "rakutentech",
         "laravel",
         "laravel-request-docs"
     ],
-    "homepage": "https://github.com/rakutentech/laravel-request-docs",
+    "homepage": "https://github.com/tflabs-nl/laravel-request-docs",
     "license": "MIT",
     "authors": [
         {

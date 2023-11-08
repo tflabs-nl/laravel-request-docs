@@ -24,6 +24,8 @@
     "react-files": "^3.0.0",
     "react-markdown": "^8.0.5",
     "react-use-localstorage": "^3.5.3",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
     "remark-gfm": "^3.0.1",
     "shortid": "^2.2.16"
   },

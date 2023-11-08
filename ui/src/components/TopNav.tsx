@@ -112,14 +112,14 @@ export default function TopNav(props: Props) {
                 <div className="flex-1">
                     <div className="normal-case text-xl">
                         <span className="pl-2">
-                            <span className='title'>Laravel Request Docs</span>
-                            <sup className='pl-2'>
-                                <small>
-                                    <a className="link link-info" href={`https://github.com/rakutentech/laravel-request-docs/releases/tag/${import.meta.env.PUBLIC_VERSION}`} target="_blank" rel="noreferrer">
-                                        version {import.meta.env.PUBLIC_VERSION}
-                                    </a>
-                                </small>
-                            </sup>
+                            <span className='title'>Login2IOT Documentation</span>
+                            {/*<sup className='pl-2'>*/}
+                            {/*    <small>*/}
+                            {/*        <a className="link link-info" href={`https://github.com/rakutentech/laravel-request-docs/releases/tag/${import.meta.env.PUBLIC_VERSION}`} target="_blank" rel="noreferrer">*/}
+                            {/*            version {import.meta.env.PUBLIC_VERSION}*/}
+                            {/*        </a>*/}
+                            {/*    </small>*/}
+                            {/*</sup>*/}
                         </span>
                     </div>
                 </div>
@@ -252,14 +252,14 @@ export default function TopNav(props: Props) {
                             OpenAPI 3.0
                         </a>
                     </div>
-                    <div className="ml-1 ">
-                        <a className="btn btn-ghost btn-sm" href='https://github.com/rakutentech/laravel-request-docs/issues/new' target="_blank" rel="noreferrer">
-                            <span className="pr-1">
-                                <ChatBubbleLeftIcon className="h-6 w-6" />
-                            </span>
-                            Feature request
-                        </a>
-                    </div>
+                    {/*<div className="ml-1 ">*/}
+                    {/*    <a className="btn btn-ghost btn-sm" href='https://github.com/rakutentech/laravel-request-docs/issues/new' target="_blank" rel="noreferrer">*/}
+                    {/*        <span className="pr-1">*/}
+                    {/*            <ChatBubbleLeftIcon className="h-6 w-6" />*/}
+                    {/*        </span>*/}
+                    {/*        Feature request*/}
+                    {/*    </a>*/}
+                    {/*</div>*/}
                 </div>
             </div>
         </header>
