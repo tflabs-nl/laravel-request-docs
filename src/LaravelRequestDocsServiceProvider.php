@@ -25,8 +25,8 @@ class LaravelRequestDocsServiceProvider extends PackageServiceProvider
         // ->hasAssets();
         // publish resources/dist/_astro to public/
         $this->publishes([
-            __DIR__.'/../resources/dist/_astro' => public_path('request-docs/_astro'),
-            __DIR__.'/../resources/dist/index.html' => public_path('request-docs/index.html'),
+            __DIR__.'/../resources/dist/_astro' => public_path('documentation/_astro'),
+            __DIR__.'/../resources/dist/index.html' => public_path('documentation/index.html'),
         ], 'request-docs-assets');
     }
 
@@ -43,11 +43,11 @@ class LaravelRequestDocsServiceProvider extends PackageServiceProvider
             ->middleware(config('request-docs.middlewares'));
 
         // Following url for api and assets, donot change to config one.
-        Route::get("request-docs/api", [\Rakutentech\LaravelRequestDocs\Controllers\LaravelRequestDocsController::class, 'api'])
+        Route::get("documentation/api", [\Rakutentech\LaravelRequestDocs\Controllers\LaravelRequestDocsController::class, 'api'])
             ->name('request-docs.api')
             ->middleware(config('request-docs.middlewares'));
 
-        Route::get("request-docs/_astro/{slug}", [\Rakutentech\LaravelRequestDocs\Controllers\LaravelRequestDocsController::class, 'assets'])
+        Route::get("documentation/_astro/{slug}", [\Rakutentech\LaravelRequestDocs\Controllers\LaravelRequestDocsController::class, 'assets'])
             // where slug is either js or css
             ->where('slug', '.*js|.*css|.*png|.*jpg|.*jpeg|.*gif|.*svg|.*ico|.*woff|.*woff2|.*ttf|.*eot|.*otf|.*map')
             ->name('request-docs.assets')
