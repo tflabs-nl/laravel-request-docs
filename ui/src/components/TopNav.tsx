@@ -245,7 +245,7 @@ export default function TopNav(props: Props) {
                         </div>
                     </div>
                     <div className="ml-1 ">
-                        <a className="btn btn-ghost btn-sm" href='/request-docs/api?openapi=true' target="_blank">
+                        <a className="btn btn-ghost btn-sm" href='/documentation/api?openapi=true' target="_blank">
                             <span className="pr-1">
                                 <ArrowUpRightIcon className="h-6 w-6" />
                             </span>
