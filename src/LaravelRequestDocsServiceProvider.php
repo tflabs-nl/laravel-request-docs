@@ -4,6 +4,7 @@ namespace Rakutentech\LaravelRequestDocs;
 
 use Illuminate\Support\Facades\Route;
 use Rakutentech\LaravelRequestDocs\Commands\ExportRequestDocsCommand;
+use Rakutentech\LaravelRequestDocs\Controllers\LaravelRequestDocsController;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -30,24 +31,29 @@ class LaravelRequestDocsServiceProvider extends PackageServiceProvider
         ], 'request-docs-assets');
     }
 
-    public function packageBooted()
+    public function packageBooted(): void
     {
         parent::packageBooted();
+
         if (!config('request-docs.enabled')) {
             return;
         }
 
         // URL from which the docs will be served.
-        Route::get(config('request-docs.url'), [\Rakutentech\LaravelRequestDocs\Controllers\LaravelRequestDocsController::class, 'index'])
+        Route::get(config('request-docs.url'), [LaravelRequestDocsController::class, 'index'])
             ->name('request-docs.index')
             ->middleware(config('request-docs.middlewares'));
 
         // Following url for api and assets, donot change to config one.
-        Route::get("documentation/api", [\Rakutentech\LaravelRequestDocs\Controllers\LaravelRequestDocsController::class, 'api'])
+        Route::get("documentation/api", [LaravelRequestDocsController::class, 'api'])
             ->name('request-docs.api')
             ->middleware(config('request-docs.middlewares'));
 
-        Route::get("documentation/_astro/{slug}", [\Rakutentech\LaravelRequestDocs\Controllers\LaravelRequestDocsController::class, 'assets'])
+        Route::get("documentation/config", [LaravelRequestDocsController::class, 'config'])
+            ->name('request-docs.config')
+            ->middleware(config('request-docs.middlewares'));
+
+        Route::get("documentation/_astro/{slug}", [LaravelRequestDocsController::class, 'assets'])
             // where slug is either js or css
             ->where('slug', '.*js|.*css|.*png|.*jpg|.*jpeg|.*gif|.*svg|.*ico|.*woff|.*woff2|.*ttf|.*eot|.*otf|.*map')
             ->name('request-docs.assets')

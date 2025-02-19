@@ -1,6 +1,8 @@
 <?php
 
 return [
+    // changes doc title
+    'title' => 'LRD - Laravel Request Docs',
     'enabled' => true,
     // change it to true will make lrd to throw exception if rules in request class need to be changed
     // keep it false
@@ -38,8 +40,16 @@ return [
     'rules_methods' => [
         'rules'
     ],
+
     // Can be overridden as // @LRDresponses 200|400|401
     'default_responses' => [ "200", "400", "401", "403", "404", "405", "422", "429", "500", "503"],
+
+    // changes default headers on first load for Set Global Headers
+    // Later the local storage is used when edits are made
+    'default_headers' => [
+        'Content-Type' => 'application/json',
+        'Accept' => 'application/json',
+    ],
 
     // By default, LRD group your routes by the first /path.
     // This is a set of regex to group your routes by prefix.
@@ -151,6 +161,16 @@ return [
                     ],
                 ],
             ],
+        ],
+        //openapi export with security configuration,
+        // if type set null then doc will exclude global security schema.
+        // Ref: https://spec.openapis.org/oas/v3.0.3#security-scheme-object
+        'security' => [
+            //available options [null, bearer, basic, apikey, jwt]
+            'type' => 'bearer',
+            'name' => 'api_key',
+            //Note: only works for "apikey" & "jwt", available options [query, header, cookie]
+            'position' => 'header',
         ],
     ],
 

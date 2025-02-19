@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+// noinspection t
+
+import React, {useEffect, useState} from 'react';
 
 import useLocalStorage from 'react-use-localstorage';
-import { defaultHeaders, makeCurlCommand } from '../libs/strings'
-import type {IAPIInfo, LRDResponse} from '../libs/types'
+import {makeCurlCommand} from '../libs/strings'
+import type {IAPIInfo, IConfig, LRDResponse} from '../libs/types'
 import ApiActionResponse from './elements/ApiActionResponse'
 import ApiActionRequest from './elements/ApiActionRequest'
 import ApiActionTabs from './elements/ApiActionTabs'
@@ -10,20 +12,21 @@ import ApiActionInfo from './elements/ApiActionInfo'
 import ApiActionSQL from './elements/ApiActionSQL'
 import ApiActionLog from './elements/ApiActionLog'
 import ApiActionEvents from './elements/ApiActionEvents'
-import { objectToFormData } from '../libs/object';
+import {objectToFormData} from '../libs/object';
 
 interface Props {
     lrdDocsItem: IAPIInfo,
     method: string,
-    host: string
+    host: string,
+    config: IConfig,
 }
 export default function ApiAction(props: Props) {
-    const { lrdDocsItem, method, host } = props
+    const { lrdDocsItem, method, host, config } = props
     const [error, setError] = useState<string | null>(null);
 
     const [allParamsRegistry, setAllParamsRegistery] = useLocalStorage('allParamsRegistry', "{}");
 
-    const [requestHeaders, setRequestHeaders] = useLocalStorage('requestHeaders', defaultHeaders);
+    const [requestHeaders, setRequestHeaders] = useLocalStorage('requestHeaders', JSON.stringify(config.default_headers, null, 2));
     const [curlCommand, setCurlCommand] = useState("");
     const [requestUri, setRequestUri] = useState(lrdDocsItem.uri);
     const [timeTaken, setTimeTaken] = useState(0);
@@ -88,7 +91,7 @@ export default function ApiAction(props: Props) {
         headers['X-Request-LRD'] = true
         if (fileParams) {
             delete headers['Content-Type']
-            headers['Accept'] = 'multipart/form-data'
+            // headers['Accept'] = 'multipart/form-data'
         }
 
         const options: any = {
@@ -318,6 +321,8 @@ export default function ApiAction(props: Props) {
 
                 {activeTab == 'response' && (
                     <ApiActionResponse
+                        requestUri={requestUri}
+                        method={method}
                         responseHeaders={responseHeaders}
                         responseData={responseData}
                         timeTaken={timeTaken}

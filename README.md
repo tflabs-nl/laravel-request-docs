@@ -22,10 +22,6 @@
 <p align="center">
   <img src="https://github.com/rakutentech/laravel-request-docs/actions/workflows/node.yml/badge.svg?branch=master" alt="CI Node">
   <img src="https://github.com/rakutentech/laravel-request-docs/actions/workflows/phptest.yml/badge.svg?branch=master" alt="CI PHP">
-  <a href="https://codecov.io/gh/rakutentech/laravel-request-docs"><img src="https://codecov.io/gh/rakutentech/laravel-request-docs/branch/master/graph/badge.svg?token=U6ZRDPY6QZ" alt="codecov"></a>
-  <a href="https://packagist.org/packages/rakutentech/laravel-request-docs"><img src="https://poser.pugx.org/rakutentech/laravel-request-docs/v/stable.png" alt="Latest Stable Version"></a>
-  <a href="https://packagist.org/packages/rakutentech/laravel-request-docs"><img src="http://poser.pugx.org/rakutentech/laravel-request-docs/downloads" alt="Total Downloads"></a>
-  <a href="LICENSE.md"><img src="https://poser.pugx.org/rakutentech/laravel-request-docs/license.png" alt="License"></a>
 </p>
 
 **Fast** Install on any Laravel Project
@@ -140,15 +136,17 @@ For extra documentation you can use markdown inside your controller method as we
 </p>
 
 
-# Extra
+# Extra documentation
 
-You write extra documentation in markdown which will be rendered as HTML on the dashboard.
-Example of using it in the controller
+You can write extra documentation in markdown using `@lrd` in the PHPDoc on the `rules` method of the `Request` classes and on the controller methods.\
+This will then be rendered as HTML on the dashboard.\
+Documentation defined on the controller method is appended below documentation defined on the `rules` method.\
+Example of using it in the controller:
 
 ```php
     /**
      * @lrd:start
-     * Hello markdown
+     * # Hello markdown
      * Free `code` or *text* to write documentation in markdown
      * @lrd:end
      */
@@ -156,9 +154,14 @@ Example of using it in the controller
     {
 ```
 
-# Params not in rules
+# Extra parameters
 
-You write extra params with rules with @LRDparam in the comment line as one line
+You define extra parameters using `@LRDparam`.\
+You can use `@LRDparam` in PHPDoc on both the `rules` methods and the controller methods.\
+You can also overwrite rules using `@LRDparam`.
+Meaning, when rules are defined in the `rules` method, you can overwrite those rules using `@LRDparam` in the PHPDoc above the `rules` method.
+And you can overwrite those rules using `@LRDparam` in a PHPDoc on the controller methods.\
+So, the precedence is `Controller method PHPDoc` < `Rules method PHPDoc` < `Rules method values`.
 
 ```php
     /**
@@ -166,11 +169,20 @@ You write extra params with rules with @LRDparam in the comment line as one line
      * // either space or pipe
      * @LRDparam nickaname string|nullable|max:32
      * // override the default response codes
-     * @LRDparam responses 200,422
+     * @LRDresponses 200|422
      */
     public function index(MyIndexRequest $request): Resource
     {
 ```
+
+# Response codes
+Without explicitly declaring response codes,
+all routes are documented to return any of the response codes defined in the request-docs.php `default_responses` configuration.\
+However, using `@LRDresponse 200|422` (spaces or pipes) within the PHPDoc on your controller methods,
+you are able to explicitly define what status codes can be returned by the server.
+
+# Configuration
+Please view the `request-docs.php` config file to see how you can customise your experience.
 
 # Testing
 
@@ -231,6 +243,9 @@ Fixing lints
 - v2.16 Top Navbar is fixed
 - v2.19 Publish _astro assets
 - v2.25 `laravel-request-docs:export`  command to export
+- v2.28 Allow extra documentation to be defined on the `rules` method of the Request class. By @Ken-vdE
+- v2.31 Customized title, vup js and PHP to latest. Customized headers. Save response history.
+- v2.40 A few bug fixes.
 
 
 # Contributors

@@ -10,8 +10,11 @@ use Illuminate\Support\Facades\Facade;
  */
 class LaravelRequestDocsFacade extends Facade
 {
+    /**
+     * @inheritDoc
+     */
     protected static function getFacadeAccessor()
     {
-        return 'laravel-request-docs';
+        return LaravelRequestDocs::class;
     }
 }

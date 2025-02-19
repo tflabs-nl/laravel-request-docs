@@ -28,7 +28,7 @@ export default function ApiActionInfo(props: Props) {
                 <table className="table table-fixed table-compact">
                     <tbody>
                         <tr>
-                            <th>Method</th>
+                            <th className='w-2/6'>Method</th>
                             <td>
                                 <span className={`method-${lrdDocsItem.http_method} uppercase`}>
                                     {lrdDocsItem.http_method}
@@ -37,20 +37,20 @@ export default function ApiActionInfo(props: Props) {
                         </tr>
                         {lrdDocsItem.controller && (
                             <tr>
-                                <th>Controller</th>
+                                <th className='w-2/6'>Controller</th>
                                 <td>{lrdDocsItem.controller}</td>
                             </tr>
                         )}
                         {lrdDocsItem.method && (
                             <tr>
-                                <th>Function</th>
+                                <th className='w-2/6'>Function</th>
                                 <td>{lrdDocsItem.method}</td>
                             </tr>
                         )}
                         {lrdDocsItem.middlewares.length != 0 && (
                             <tr>
-                                <th>Middlewares</th>
-                                <td>
+                                <th className='w-2/6'>Middlewares</th>
+                                <td className='no-scrollbar'>
                                     {lrdDocsItem.middlewares.map((middleware) => (
                                         <div key={shortid.generate()}>
                                             <span className="badge badge-ghost badge-md mb-1 rounded-sm">{middleware}</span>
@@ -61,7 +61,7 @@ export default function ApiActionInfo(props: Props) {
                             </tr>
                         )}
                         <tr>
-                            <th>
+                            <th className='w-2/6'>
                                 Status Codes
                             </th>
                             <td>
@@ -84,7 +84,7 @@ export default function ApiActionInfo(props: Props) {
                             </td>
                         </tr>
                         <tr>
-                            <th>
+                            <th className='w-2/6'>
                                 <CodeBracketIcon className='inline-block w-4 h-4 mr-1' />
                                 Curl
                             </th>
